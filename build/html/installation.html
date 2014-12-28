@@ -1,0 +1,403 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Installation of ModernCare ERP system &mdash; ModernCare ERP Technical 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="ModernCare ERP Technical 1.0 documentation" href="index.html" />
+    <link rel="prev" title="Welcome to ModernCare ERP Technical’s documentation!" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to ModernCare ERP Technical’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">ModernCare ERP Technical 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="installation-of-moderncare-erp-system">
+<span id="installation"></span><h1>Installation of ModernCare ERP system<a class="headerlink" href="#installation-of-moderncare-erp-system" title="Permalink to this headline">¶</a></h1>
+<p>Last Update: December 27, 2014</p>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<p>This guide describes steps to install OpenERP for ModernCare.</p>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Google Account with developer option enabled</li>
+</ul>
+</div>
+<div class="section" id="create-new-instance">
+<h2>Create New Instance<a class="headerlink" href="#create-new-instance" title="Permalink to this headline">¶</a></h2>
+<p>First step is to create new GCE (Google Compute Engine) instance.
+This is a virtual machine hosted by Google Cloud Platform.</p>
+<ol class="arabic">
+<li><p class="first">Log on with your Google Account</p>
+</li>
+<li><p class="first">Goto Developer Console <a class="reference external" href="http://console.developers.google.com">http://console.developers.google.com</a></p>
+</li>
+<li><p class="first">Create new Google project (if not already exist). Each project will have its own billing.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Project Name: <tt class="docutils literal"><span class="pre">MDC</span> <span class="pre">ERP</span></tt></li>
+<li>Project ID: <tt class="docutils literal"><span class="pre">mdc-erp</span></tt></li>
+</ul>
+</div></blockquote>
+</li>
+<li><dl class="first docutils">
+<dt>Create new Compute Engine Instance</dt>
+<dd><ul class="first last">
+<li><p class="first">Goto <strong>Compute</strong> &#8211;&gt; <strong>Compute Engine</strong> &#8211;&gt; <strong>VM Instance</strong></p>
+</li>
+<li><p class="first">Then click <tt class="docutils literal"><span class="pre">Create</span> <span class="pre">an</span> <span class="pre">instance</span></tt></p>
+</li>
+<li><dl class="first docutils">
+<dt>On <tt class="docutils literal"><span class="pre">Create</span> <span class="pre">a</span> <span class="pre">new</span> <span class="pre">instance</span></tt> screen</dt>
+<dd><ul class="first last simple">
+<li>Name: <tt class="docutils literal"><span class="pre">mdc-erp-instance-1</span></tt></li>
+<li>Allow HTTP Traffic: <tt class="docutils literal"><span class="pre">checked</span></tt></li>
+<li>Allow HTTPS Traffic: <tt class="docutils literal"><span class="pre">checked</span></tt></li>
+<li>Zone : Any of the <tt class="docutils literal"><span class="pre">asia</span></tt> zone</li>
+<li>Machine Type: <tt class="docutils literal"><span class="pre">n1-standard-1</span> <span class="pre">(1</span> <span class="pre">vCPU,</span> <span class="pre">3.8</span> <span class="pre">GB</span> <span class="pre">memory)</span></tt></li>
+<li>Boot Source: <tt class="docutils literal"><span class="pre">New</span> <span class="pre">disk</span> <span class="pre">from</span> <span class="pre">image</span></tt></li>
+<li>Image: <tt class="docutils literal"><span class="pre">centos7-v20141205</span></tt> <em>It can be other date</em></li>
+<li>Boot Disk Type: <tt class="docutils literal"><span class="pre">Standard</span> <span class="pre">Persistent</span> <span class="pre">Disk</span></tt></li>
+<li>Delete boot disk when instance is deleted: <tt class="docutils literal"><span class="pre">unchecked</span></tt> <em>This is important</em></li>
+<li>Networking: <tt class="docutils literal"><span class="pre">Ephemeral</span></tt></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Then click <tt class="docutils literal"><span class="pre">Create</span></tt></p>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">After a while, new instance will be created. Take note of the External IP address assigned to it.</p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">We can later on changed the IP address assigned to particular instance.</p>
+</div>
+</div>
+<div class="section" id="modify-instance-firewall-rule">
+<h2>Modify instance firewall rule<a class="headerlink" href="#modify-instance-firewall-rule" title="Permalink to this headline">¶</a></h2>
+<p>This step is required to allow outside communication to access the instance via http port 8069 used by odoo.</p>
+<ol class="arabic simple">
+<li>Go to the instance detail page</li>
+<li>Under <tt class="docutils literal"><span class="pre">Network</span></tt> section, there is a like for network rule called <tt class="docutils literal"><span class="pre">defult</span></tt>, click it.</li>
+<li>In the <tt class="docutils literal"><span class="pre">Firewall</span> <span class="pre">rules</span></tt> section, locate the rule called <tt class="docutils literal"><span class="pre">default-allow-http</span></tt>, expand it.</li>
+<li>Click <tt class="docutils literal"><span class="pre">Edit</span></tt> inside the <tt class="docutils literal"><span class="pre">default-allow-http</span></tt> firewall rule.</li>
+<li>On the dialog of <tt class="docutils literal"><span class="pre">Edit</span> <span class="pre">firewall</span> <span class="pre">rule</span> <span class="pre">&quot;default-allow-http&quot;</span></tt> change protocols &amp; ports to <tt class="docutils literal"><span class="pre">tcp:80,8069</span></tt>, and save.</li>
+</ol>
+</div>
+<div class="section" id="access-the-instance-using-ssh">
+<h2>Access the instance using SSH<a class="headerlink" href="#access-the-instance-using-ssh" title="Permalink to this headline">¶</a></h2>
+<p>The easiest way to access to the running instance is through the SSH via web browser.
+In the VM Instances screen with the list of instance, on the right-most there is connect column
+with <strong>SSH</strong> displayed.
+Select <tt class="docutils literal"><span class="pre">Open</span> <span class="pre">in</span> <span class="pre">browser</span> <span class="pre">windows</span></tt> opiton will launch another browser window with SSH session to the instance
+under your Google user account of with <strong>sudo</strong> priviledge.</p>
+</div>
+<div class="section" id="installing-odoo-7-into-centos7">
+<h2>Installing Odoo 7 into CentOS7<a class="headerlink" href="#installing-odoo-7-into-centos7" title="Permalink to this headline">¶</a></h2>
+<p>After <a class="reference internal" href="#create-new-instance">Create New Instance</a> and <a class="reference internal" href="#access-the-instance-using-ssh">Access the instance using SSH</a> , now it is time to start intsalling Odoo into it.</p>
+<ol class="arabic">
+<li><p class="first">Switch user to root</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo su -
+</pre></div>
+</div>
+</li>
+<li><p class="first">Update yum database</p>
+<div class="highlight-python"><div class="highlight"><pre>yum -y update
+</pre></div>
+</div>
+</li>
+<li><p class="first">Create 2 strong passwords</p>
+<div class="highlight-python"><div class="highlight"><pre>ODOO_POSTGRES_PASSWORD=`&lt; /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-20};echo;`
+ODOO_DB_ADMIN_PASSWORD=`&lt; /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-20};echo;`
+</pre></div>
+</div>
+</li>
+<li><p class="first">Install PostgreSQL, initialize database and enabling service to start when reboot</p>
+<div class="highlight-python"><div class="highlight"><pre>yum -y install postgresql-server postgresql-devel
+postgresql-setup initdb
+systemctl enable postgresql.service
+</pre></div>
+</div>
+</li>
+<li><p class="first">Configure PostgreSQL so it will accept connection using MD5</p>
+<div class="highlight-python"><div class="highlight"><pre>cp /var/lib/pgsql/data/pg_hba.conf /var/lib/pgsql/data/pg_hba.conf.orig
+sed -i &quot;/^host/s/ident/md5/g&quot; /var/lib/pgsql/data/pg_hba.conf
+</pre></div>
+</div>
+</li>
+<li><p class="first">Start Postgres Server and add odoo user to Postgres</p>
+<div class="highlight-python"><div class="highlight"><pre>systemctl start postgresql.service
+echo -e &quot;$ODOO_POSTGRES_PASSWORD\n$ODOO_POSTGRES_PASSWORD\n&quot; | su - postgres -c &quot;createuser --createdb --username postgres --no-createrole --no-superuser --pwprompt odoo&quot;
+</pre></div>
+</div>
+</li>
+<li><p class="first">Install some yum packages that will be required before installying Python virtual environment</p>
+<div class="highlight-python"><div class="highlight"><pre>yum -y install wget gcc zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libffi-devel libxslt libxslt-devel libxml2 libxml2-devel openldap-devel libjpeg-turbo-devel openjpeg-devel libtiff-devel libyaml-devel python-virtualenv git libpng12 libXext xorg-x11-fonts-Type1
+</pre></div>
+</div>
+</li>
+<li><p class="first">Install <em>wkhtmltopdf</em> via rpm - this package needed to create PDF in odoo</p>
+<div class="highlight-python"><div class="highlight"><pre>rpm -ivh http://downloads.sourceforge.net/project/wkhtmltopdf/0.12.1/wkhtmltox-0.12.1_linux-centos6-amd64.rpm
+ln -s /usr/local/bin/wkhtmltopdf /usr/bin/
+</pre></div>
+</div>
+</li>
+<li><p class="first">Install Microsoft core fonts</p>
+<div class="highlight-python"><div class="highlight"><pre>rpm -ivh http://dl.fedoraproject.org/pub/epel/7/x86_64/l/libmspack-0.4-0.2.alpha.el7.x86_64.rpm
+rpm -ivh http://dl.fedoraproject.org/pub/epel/7/x86_64/c/cabextract-1.4-4.el7.x86_64.rpm
+rpm -ivh https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
+</pre></div>
+</div>
+</li>
+<li><p class="first">Create odoo Unix user</p>
+<div class="highlight-python"><div class="highlight"><pre>adduser odoo
+</pre></div>
+</div>
+</li>
+<li><p class="first">Create some odoo directories and make odoo its owner</p>
+<div class="highlight-python"><div class="highlight"><pre>DIR=&quot;/var/run/odoo /var/log/odoo /opt/odoo&quot;
+for NAME in $DIR
+do
+if [ ! -d $NAME ]; then
+mkdir $NAME
+chown odoo.odoo $NAME
+fi
+done
+</pre></div>
+</div>
+</li>
+<li><p class="first">Log on as odoo</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">su</span> <span class="o">-</span> <span class="n">odoo</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Create virtual environment under odoo user and activate it</p>
+<div class="highlight-python"><div class="highlight"><pre>/bin/virtualenv odoo
+source odoo/bin/activate
+</pre></div>
+</div>
+</li>
+<li><p class="first">Install Python modules under odoo virtual environment</p>
+<div class="highlight-python"><div class="highlight"><pre>pip install http://download.gna.org/pychart/PyChart-1.39.tar.gz
+pip install babel
+pip install docutils
+pip install feedparser
+pip install gdata
+pip install Jinja2
+pip install mako
+pip install mock
+pip install psutil
+pip install psycopg2
+pip install pydot
+pip install python-dateutil
+pip install python-openid
+pip install pytz
+pip install pywebdav
+pip install pyyaml
+pip install reportlab
+pip install simplejson
+pip install unittest2
+pip install vatnumber
+pip install vobject
+pip install werkzeug
+pip install xlwt
+pip install pyopenssl
+pip install lxml
+pip install python-ldap
+pip install pillow
+pip install decorator
+pip install requests
+pip install pyPdf
+pip install wkhtmltopdf
+pip install passlib
+</pre></div>
+</div>
+</li>
+<li><p class="first">Install odoo 7 from github (under odoo name) and then exit odoo Unix user, return to root</p>
+<div class="highlight-python"><div class="highlight"><pre>cd /opt
+git clone https://github.com/odoo/odoo.git --branch 7.0
+chown -R odoo.odoo odoo
+exit
+</pre></div>
+</div>
+</li>
+<li><p class="first">Create odoo-server.conf file</p>
+<div class="highlight-python"><div class="highlight"><pre>cat &gt; /etc/odoo-server.conf &lt;&lt; EOF
+[options]
+; This is the password that allows database operations:
+admin_passwd = $ODOO_DB_ADMIN_PASSWORD
+; DATABASE OPTIONS
+db_host = localhost
+db_port = 5432
+db_user = odoo
+db_password = $ODOO_POSTGRES_PASSWORD
+; MISC SETTINGS
+addons_path = /opt/odoo/addons
+without-demo=all
+no-xmlrpc = True
+no-xmlrpcs = True
+no-netrpc = True
+; LOG SETTINGS
+logfile = /var/log/odoo/odoo-server.log
+log_handler = werkzeug:WARNING
+log_level = warn
+no-logrotate = True
+
+EOF
+</pre></div>
+</div>
+</li>
+<li><p class="first">Enable Log Rotation using CentOS built in feature</p>
+<div class="highlight-python"><div class="highlight"><pre>cat &gt; /etc/logrotate.d/odoo-server &lt;&lt; EOF
+/var/log/odoo/*.log {
+    copytruncate
+    missingok
+    notifempty
+}
+EOF
+</pre></div>
+</div>
+</li>
+<li><p class="first">Create start/stop script</p>
+<div class="highlight-python"><div class="highlight"><pre>cat &gt; /usr/lib/systemd/system/odoo.service &lt;&lt; EOF
+[Unit]
+Description=Odoo Open Source ERP and CRM
+After=network.target postgresql.service
+
+[Service]
+Type=forking
+User=odoo
+Group=odoo
+Environment=&quot;ENVDIR=/home/odoo/odoo&quot;
+ExecStart=/bin/bash -c &quot;cd /home/odoo; /bin/virtualenv -q odoo; source odoo/bin/activate; /usr/bin/odoo-server --config=/etc/odoo-server.conf &amp;&quot;
+
+[Install]
+WantedBy=multi-user.target
+
+EOF
+
+ln -s /opt/odoo/openerp-server /usr/bin/odoo-server
+systemctl enable odoo
+</pre></div>
+</div>
+</li>
+<li><p class="first">Add firewall rule and start odoo server</p>
+<div class="highlight-python"><div class="highlight"><pre>firewall-cmd --zone=public --add-port=8069/tcp --permanent
+firewall-cmd --reload
+
+systemctl start odoo
+</pre></div>
+</div>
+</li>
+<li><p class="first">Write down your odoo admin password (you&#8217;ll need it to create odoo database)</p>
+<div class="highlight-python"><div class="highlight"><pre>echo $ODOO_DB_ADMIN_PASSWORD
+</pre></div>
+</div>
+</li>
+</ol>
+<p>At this point you should be able to access the site via <tt class="docutils literal"><span class="pre">http://your.ip:8069</span></tt>. You should log on and change the admin password.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Installation of ModernCare ERP system</a><ul>
+<li><a class="reference internal" href="#requirements">Requirements</a></li>
+<li><a class="reference internal" href="#create-new-instance">Create New Instance</a></li>
+<li><a class="reference internal" href="#modify-instance-firewall-rule">Modify instance firewall rule</a></li>
+<li><a class="reference internal" href="#access-the-instance-using-ssh">Access the instance using SSH</a></li>
+<li><a class="reference internal" href="#installing-odoo-7-into-centos7">Installing Odoo 7 into CentOS7</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to ModernCare ERP Technical&#8217;s documentation!</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/installation.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to ModernCare ERP Technical’s documentation!"
+             >previous</a> |</li>
+        <li><a href="index.html">ModernCare ERP Technical 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, InfoMobius.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

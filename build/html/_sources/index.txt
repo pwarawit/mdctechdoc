@@ -10,8 +10,12 @@ Contents:
 
 .. toctree::
    :maxdepth: 2
+   
+   installation
+   config
+   common_tasks
 
-
+   
 
 Indices and tables
 ==================

@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Configuring Odoo Installation &mdash; ModernCare ERP Technical 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="ModernCare ERP Technical 1.0 documentation" href="index.html" />
+    <link rel="next" title="Common Tasks" href="common_tasks.html" />
+    <link rel="prev" title="Installation of ModernCare ERP system" href="installation.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="common_tasks.html" title="Common Tasks"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Installation of ModernCare ERP system"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">ModernCare ERP Technical 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="configuring-odoo-installation">
+<span id="config"></span><h1>Configuring Odoo Installation<a class="headerlink" href="#configuring-odoo-installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="create-infomobius-unix-account">
+<h2>Create infomobius unix account<a class="headerlink" href="#create-infomobius-unix-account" title="Permalink to this headline">¶</a></h2>
+<p>This step creates infomobius unix account. This account will be used to
+store various things like</p>
+<ul class="simple">
+<li>Thai Fonts</li>
+<li>Flask or Back up script</li>
+<li>Installation Script</li>
+<li>Any other non-odoo stuff</li>
+</ul>
+<p>Steps:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo su -
+adduser infomobius
+su infomobius
+</pre></div>
+</div>
+</div>
+<div class="section" id="installing-thai-fonts">
+<h2>Installing Thai Fonts<a class="headerlink" href="#installing-thai-fonts" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Clone a repo from github <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">git</span> <span class="pre">clone</span> <span class="pre">git://github.com/pwarawit/thaifonts.git</span></tt></li>
+<li>Copy fonts from to /usr/share/fonts</li>
+<li>refresh font <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">fc-cache</span> <span class="pre">-f</span> <span class="pre">-v</span></tt></li>
+<li>Modify the customfonts.py file</li>
+<li>restart odoo server</li>
+<li>clone a repo <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">git</span> <span class="pre">clone</span> <span class="pre">git://github.com/pwarawit/thaifonts.git</span></tt></li>
+</ul>
+</div>
+<div class="section" id="create-custom-addons-directory">
+<h2>Create Custom Addons directory<a class="headerlink" href="#create-custom-addons-directory" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">/home/odoo/addons</span></tt></p>
+<p>Create new folder to keep odoo custom addons under odoo</p>
+<div class="highlight-python"><div class="highlight"><pre>cd /home/infomobius
+mkdir odoo_addons
+cd /home/infomobius/odoo_addons
+git clone git://github.com/pwarawit/mdc_adblock.git
+</pre></div>
+</div>
+<p>Modify odoo-server.conf file</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo vi /etc/odoo-server.conf
+</pre></div>
+</div>
+<p>Add /home/infomobius/odoo_addons into addons_path (separate by comma)
+Then need to restart odoo server.</p>
+<ul class="simple">
+<li>Check if the server is running</li>
+<li>Check if PostgreSQL is running</li>
+<li>Check the Odoo server log</li>
+<li>Restart Odoo Server</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Configuring Odoo Installation</a><ul>
+<li><a class="reference internal" href="#create-infomobius-unix-account">Create infomobius unix account</a></li>
+<li><a class="reference internal" href="#installing-thai-fonts">Installing Thai Fonts</a></li>
+<li><a class="reference internal" href="#create-custom-addons-directory">Create Custom Addons directory</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="installation.html"
+                        title="previous chapter">Installation of ModernCare ERP system</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="common_tasks.html"
+                        title="next chapter">Common Tasks</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/config.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="common_tasks.html" title="Common Tasks"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Installation of ModernCare ERP system"
+             >previous</a> |</li>
+        <li><a href="index.html">ModernCare ERP Technical 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, InfoMobius.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>
