@@ -56,3 +56,21 @@ Modify odoo-server.conf file ::
 Add /home/odoo/custom_addons into addons_path (separate by comma)
 Then need to restart odoo server.
 	
+************************************************************************
+Create documentation directory
+************************************************************************
+
+``/home/infomobius/mdcdoc``
+``/home/infomobius/mdctechdoc``
+
+Create  new folder to keep documentation under infomobius ::
+
+    cd /home/infomobius
+	git clone git://github.com/pwarawit/mdcdoc.git
+    git clone git://github.com/pwarawit/mdctechdoc.git
+
+Installing sphinx - and then compile it in place. 
+Later on, create link to these place for Apache
+
+
+	
