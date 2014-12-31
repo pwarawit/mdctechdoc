@@ -69,8 +69,18 @@ Create  new folder to keep documentation under infomobius ::
 	git clone git://github.com/pwarawit/mdcdoc.git
     git clone git://github.com/pwarawit/mdctechdoc.git
 
-Installing sphinx - and then compile it in place. 
-Later on, create link to these place for Apache
+Create link to /var/www/html so the browser can find it. ::
+
+    cp -R /home/infomobius/mdcdoc/build/html /var/www/html/mdcdoc	
+    cp -R /home/infomobius/mdctechdoc/build/html /var/www/html/mdctechdoc
+	
+	Later on, create link to these place for Apache
+
+************************************************************************
+Installing Sphinx (optional)
+************************************************************************
+
+``sudo easy_install -U Sphinx``
 
 
 	

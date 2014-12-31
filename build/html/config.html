@@ -83,24 +83,42 @@ su infomobius
 <h2>Create Custom Addons directory<a class="headerlink" href="#create-custom-addons-directory" title="Permalink to this headline">¶</a></h2>
 <p><tt class="docutils literal"><span class="pre">/home/odoo/addons</span></tt></p>
 <p>Create new folder to keep odoo custom addons under odoo</p>
-<div class="highlight-python"><div class="highlight"><pre>cd /home/infomobius
-mkdir odoo_addons
-cd /home/infomobius/odoo_addons
+<div class="highlight-python"><div class="highlight"><pre>mkdir /home/odoo/custom_addons
+cd /home/odoo/custom_addons
 git clone git://github.com/pwarawit/mdc_adblock.git
+git clone git://github.com/pwarawit/web_printscreen_zb.git
+git clone git://github.com/pwarawit/mdc_custom.git
+git clone git://github.com/pwarawit/mdc_discount.git
 </pre></div>
 </div>
 <p>Modify odoo-server.conf file</p>
 <div class="highlight-python"><div class="highlight"><pre>sudo vi /etc/odoo-server.conf
 </pre></div>
 </div>
-<p>Add /home/infomobius/odoo_addons into addons_path (separate by comma)
+<p>Add /home/odoo/custom_addons into addons_path (separate by comma)
 Then need to restart odoo server.</p>
-<ul class="simple">
-<li>Check if the server is running</li>
-<li>Check if PostgreSQL is running</li>
-<li>Check the Odoo server log</li>
-<li>Restart Odoo Server</li>
-</ul>
+</div>
+<div class="section" id="create-documentation-directory">
+<h2>Create documentation directory<a class="headerlink" href="#create-documentation-directory" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">/home/infomobius/mdcdoc</span></tt>
+<tt class="docutils literal"><span class="pre">/home/infomobius/mdctechdoc</span></tt></p>
+<p>Create  new folder to keep documentation under infomobius</p>
+<div class="highlight-python"><div class="highlight"><pre>cd /home/infomobius
+    git clone git://github.com/pwarawit/mdcdoc.git
+git clone git://github.com/pwarawit/mdctechdoc.git
+</pre></div>
+</div>
+<p>Create link to /var/www/html so the browser can find it.</p>
+<div class="highlight-python"><div class="highlight"><pre>cp -R /home/infomobius/mdcdoc/build/html /var/www/html/mdcdoc
+cp -R /home/infomobius/mdctechdoc/build/html /var/www/html/mdctechdoc
+
+    Later on, create link to these place for Apache
+</pre></div>
+</div>
+</div>
+<div class="section" id="installing-sphinx-optional">
+<h2>Installing Sphinx (optional)<a class="headerlink" href="#installing-sphinx-optional" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">easy_install</span> <span class="pre">-U</span> <span class="pre">Sphinx</span></tt></p>
 </div>
 </div>
 
@@ -116,6 +134,8 @@ Then need to restart odoo server.</p>
 <li><a class="reference internal" href="#create-infomobius-unix-account">Create infomobius unix account</a></li>
 <li><a class="reference internal" href="#installing-thai-fonts">Installing Thai Fonts</a></li>
 <li><a class="reference internal" href="#create-custom-addons-directory">Create Custom Addons directory</a></li>
+<li><a class="reference internal" href="#create-documentation-directory">Create documentation directory</a></li>
+<li><a class="reference internal" href="#installing-sphinx-optional">Installing Sphinx (optional)</a></li>
 </ul>
 </li>
 </ul>
